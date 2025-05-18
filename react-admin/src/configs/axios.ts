@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
+import { URL_CONSTANTS } from "../utils/constant";
 
 let isRefreshing = false;
 let failedQueue: any[] = [];
@@ -66,8 +67,9 @@ axios.interceptors.response.use(
             !isRedirecting
         ) {
             isRedirecting = true;
-            if (window.location.pathname !== "/") {
-                window.location.href = "/";
+            if (window.location.pathname !== URL_CONSTANTS.LOGIN) {
+                window.location.href = URL_CONSTANTS.LOGIN;
+                localStorage.removeItem("token");
             }
         }
         return Promise.reject(error);
