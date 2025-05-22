@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import axios from "../configs/axios";
 import type {
     ForgotPasswordForm,
@@ -11,6 +10,7 @@ import type {
 } from "../types/auth.type";
 import { handleAxiosError } from "../helpers/axiosHelper";
 import type { UserResponse } from "../types/user.type";
+import { toast } from "../utils/toast";
 
 export const AuthService = {
     login: async (payload: LoginForm): Promise<LoginResponse | undefined> => {

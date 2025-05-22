@@ -1,5 +1,5 @@
 import axios from "../configs/axios";
-import { toast } from "react-toastify";
+import { toast } from "../utils/toast";
 
 export const handleAxiosError = (error: unknown) => {
     if (axios.isAxiosError(error)) {

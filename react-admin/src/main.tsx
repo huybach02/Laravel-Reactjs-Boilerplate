@@ -7,14 +7,16 @@ import {
 } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import DashboardPage from "./pages/DashboardPage";
-import { ToastContainer } from "react-toastify";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import UserList from "./pages/user/UserList";
-import Layout from "./components/layouts/layout";
 import LoginMiddleware from "./middlewares/LoginMiddleware";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
+import { SnackbarProvider } from "notistack";
+import MainLayout from "./components/layouts/main-layout";
+import AuthLayout from "./components/layouts/auth-layout";
+import { ConfigProvider } from "antd";
 
 const router = createBrowserRouter([
     {
@@ -28,21 +30,31 @@ const router = createBrowserRouter([
                 index: true,
                 element: (
                     <LoginMiddleware>
-                        <LoginPage />
+                        <AuthLayout title="ĐĂNG NHẬP">
+                            <LoginPage />
+                        </AuthLayout>
                     </LoginMiddleware>
                 ),
             },
             {
                 path: "forgot-password",
-                element: <ForgotPassword />,
+                element: (
+                    <AuthLayout title="QUÊN MẬT KHẨU">
+                        <ForgotPassword />
+                    </AuthLayout>
+                ),
             },
             {
                 path: "reset-password",
-                element: <ResetPassword />,
+                element: (
+                    <AuthLayout title="ĐẶT LẠI MẬT KHẨU">
+                        <ResetPassword />
+                    </AuthLayout>
+                ),
             },
             {
                 path: "dashboard",
-                element: <Layout />,
+                element: <MainLayout />,
                 children: [
                     {
                         index: true,
@@ -52,7 +64,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "user",
-                element: <Layout />,
+                element: <MainLayout />,
                 children: [
                     {
                         index: true,
@@ -65,10 +77,26 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")!).render(
-    // <StrictMode>
-    <Provider store={store}>
-        <RouterProvider router={router} />
-        <ToastContainer position="top-center" />
-    </Provider>
-    // </StrictMode>
+    <ConfigProvider
+        theme={{
+            token: {
+                // // Seed Token
+                // colorPrimary: "#00b96b",
+                // borderRadius: 2,
+                // // Alias Token
+                // colorBgContainer: "#fafafa",
+            },
+        }}
+    >
+        <SnackbarProvider
+            anchorOrigin={{
+                vertical: "top",
+                horizontal: "center",
+            }}
+        >
+            <Provider store={store}>
+                <RouterProvider router={router} />
+            </Provider>
+        </SnackbarProvider>
+    </ConfigProvider>
 );

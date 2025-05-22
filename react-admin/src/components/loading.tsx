@@ -1,8 +1,23 @@
+import { Flex, Spin, Typography } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
 const Loading = () => {
     return (
-        <div className="flex items-center justify-center h-screen">
-            <div className="w-10 h-10 border-t-2 border-b-2 border-gray-900 rounded-full animate-spin"></div>
-        </div>
+        <Flex
+            style={{
+                width: "100vw",
+                height: "100vh",
+            }}
+            justify="center"
+            align="center"
+            gap="middle"
+            vertical
+        >
+            <Spin
+                indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />}
+            />
+            <Typography.Title level={5}>Đang tải dữ liệu...</Typography.Title>
+        </Flex>
     );
 };
 

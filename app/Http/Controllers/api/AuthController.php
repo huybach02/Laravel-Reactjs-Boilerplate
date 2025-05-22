@@ -75,6 +75,8 @@ class AuthController extends Controller
 
     $user = Auth::user();
 
+    // TODO: Xử lý xác thực 2FA
+
     $refreshTokenData = [
       'user_id' => $user->id,
       'expired_at' => time() + (int)config('jwt.refresh_ttl') * 60 * ($request->input('remember_me') ? 2 : 1) // 1209600 giây = 2 tuần

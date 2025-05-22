@@ -3,10 +3,10 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import type { RootState } from "../redux/store";
-import Loading from "../components/loading";
 import { setAuthLogin, setAuthLogout } from "../redux/slices/auth.slice";
 import { AuthService } from "../services/AuthService";
 import { URL_CONSTANTS } from "../utils/constant";
+import Loading from "../components/loading";
 
 const AuthMiddleware = ({ children }: { children: React.ReactNode }) => {
     const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const AuthMiddleware = ({ children }: { children: React.ReactNode }) => {
             } finally {
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 500);
+                }, 300);
             }
         };
 

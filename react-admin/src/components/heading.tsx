@@ -1,14 +1,18 @@
-interface HeadingProps {
+import { Typography } from "antd";
+
+const Heading = ({
+    title,
+    description,
+}: {
     title: string;
     description: string;
-}
-
-const Heading = ({ title, description }: HeadingProps) => {
+}) => {
     return (
-        <div className="flex flex-col gap-2">
-            <h1 className="text-2xl font-bold">{title}</h1>
-            <p className="text-sm text-gray-500">{description}</p>
+        <div>
+            <Typography.Title level={2}>{title}</Typography.Title>
+            <Typography.Paragraph>{description}</Typography.Paragraph>
         </div>
     );
 };
+
 export default Heading;

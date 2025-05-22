@@ -1,329 +1,100 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
-    --radius-sm: calc(var(--radius) - 4px);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-lg: var(--radius);
-    --radius-xl: calc(var(--radius) + 4px);
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --color-card: var(--card);
-    --color-card-foreground: var(--card-foreground);
-    --color-popover: var(--popover);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-primary: var(--primary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-secondary: var(--secondary);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-muted: var(--muted);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-destructive: var(--destructive);
-    --color-border: var(--border);
-    --color-input: var(--input);
-    --color-ring: var(--ring);
-    --color-chart-1: var(--chart-1);
-    --color-chart-2: var(--chart-2);
-    --color-chart-3: var(--chart-3);
-    --color-chart-4: var(--chart-4);
-    --color-chart-5: var(--chart-5);
-    --color-sidebar: var(--sidebar);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-ring: var(--sidebar-ring);
-}
-
 :root {
-    --radius: 0.625rem;
-    --background: oklch(1 0 0);
-    --foreground: oklch(0.145 0 0);
-    --card: oklch(1 0 0);
-    --card-foreground: oklch(0.145 0 0);
-    --popover: oklch(1 0 0);
-    --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.6 0.118 184.704);
-    --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
-    --secondary-foreground: oklch(0.205 0 0);
-    --muted: oklch(0.97 0 0);
-    --muted-foreground: oklch(0.556 0 0);
-    --accent: oklch(0.97 0 0);
-    --accent-foreground: oklch(0.205 0 0);
-    --destructive: oklch(0.577 0.245 27.325);
-    --border: oklch(0.922 0 0);
-    --input: oklch(0.922 0 0);
-    --ring: oklch(0.708 0 0);
-    --chart-1: oklch(0.646 0.222 41.116);
-    --chart-2: oklch(0.6 0.118 184.704);
-    --chart-3: oklch(0.398 0.07 227.392);
-    --chart-4: oklch(0.828 0.189 84.429);
-    --chart-5: oklch(0.769 0.188 70.08);
-    --sidebar: oklch(0.985 0 0);
-    --sidebar-foreground: oklch(0.145 0 0);
-    --sidebar-primary: oklch(0.205 0 0);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.97 0 0);
-    --sidebar-accent-foreground: oklch(0.205 0 0);
-    --sidebar-border: oklch(0.922 0 0);
-    --sidebar-ring: oklch(0.708 0 0);
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.dark {
-    --background: oklch(0.145 0 0);
-    --foreground: oklch(0.985 0 0);
-    --card: oklch(0.205 0 0);
-    --card-foreground: oklch(0.985 0 0);
-    --popover: oklch(0.205 0 0);
-    --popover-foreground: oklch(0.985 0 0);
-    --primary: oklch(0.922 0 0);
-    --primary-foreground: oklch(0.205 0 0);
-    --secondary: oklch(0.269 0 0);
-    --secondary-foreground: oklch(0.985 0 0);
-    --muted: oklch(0.269 0 0);
-    --muted-foreground: oklch(0.708 0 0);
-    --accent: oklch(0.269 0 0);
-    --accent-foreground: oklch(0.985 0 0);
-    --destructive: oklch(0.704 0.191 22.216);
-    --border: oklch(1 0 0 / 10%);
-    --input: oklch(1 0 0 / 15%);
-    --ring: oklch(0.556 0 0);
-    --chart-1: oklch(0.488 0.243 264.376);
-    --chart-2: oklch(0.696 0.17 162.48);
-    --chart-3: oklch(0.769 0.188 70.08);
-    --chart-4: oklch(0.627 0.265 303.9);
-    --chart-5: oklch(0.645 0.246 16.439);
-    --sidebar: oklch(0.205 0 0);
-    --sidebar-foreground: oklch(0.985 0 0);
-    --sidebar-primary: oklch(0.488 0.243 264.376);
-    --sidebar-primary-foreground: oklch(0.985 0 0);
-    --sidebar-accent: oklch(0.269 0 0);
-    --sidebar-accent-foreground: oklch(0.985 0 0);
-    --sidebar-border: oklch(1 0 0 / 10%);
-    --sidebar-ring: oklch(0.556 0 0);
+a {
+    font-weight: 500;
+    color: #646cff;
+    text-decoration: inherit;
+}
+a:hover {
+    color: #535bf2;
 }
 
-@layer base {
-    * {
-        @apply border-border outline-ring/50;
-    }
-    body {
-        @apply bg-background text-foreground;
-    }
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
 }
 
-/* Custom scrollbar - Phiên bản cải tiến */
-::-webkit-scrollbar {
-    width: 3px;
-    height: 3px;
-    opacity: 0.5;
+h1 {
+    font-size: 3.2em;
+    line-height: 1.1;
 }
 
-::-webkit-scrollbar-track {
-    background: transparent;
+button {
     border-radius: 8px;
-    margin: 3px;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
     cursor: pointer;
-    border: 0.5px solid rgba(255, 255, 255, 0.05);
-    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+    transition: border-color 0.25s;
+}
+button:hover {
+    border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.4);
-    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
-}
-
-::-webkit-scrollbar-thumb:active {
-    background: rgba(0, 0, 0, 0.6);
-}
-
-/* Container có scrollbar với hiệu ứng hover */
-.with-scrollbar {
-    position: relative;
-}
-
-.with-scrollbar::-webkit-scrollbar {
-    width: 3px;
-    opacity: 0;
-    transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.with-scrollbar:hover::-webkit-scrollbar {
-    opacity: 1;
-}
-
-/* Firefox scrollbar */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
-}
-
-/* Đảm bảo scrollbar đẹp trong cả dark mode */
-.dark ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border: 0.5px solid rgba(0, 0, 0, 0.1);
-    box-shadow: inset 0 0 3px rgba(255, 255, 255, 0.05);
-}
-
-.dark ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.1);
-}
-
-.dark ::-webkit-scrollbar-thumb:active {
-    background: rgba(255, 255, 255, 0.35);
-}
-
-/* Firefox dark mode */
-.dark * {
-    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
-}
-
-/* Custom Sidebar Scrollbar */
-.sidebar ::-webkit-scrollbar,
-.sidebar-content ::-webkit-scrollbar {
-    width: 2px;
-}
-
-.sidebar ::-webkit-scrollbar-thumb,
-.sidebar-content ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.15);
-    border-radius: 4px;
-}
-
-.sidebar:hover ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.25);
-}
-
-.dark .sidebar ::-webkit-scrollbar-thumb,
-.dark .sidebar-content ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.dark .sidebar:hover ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-/* Animated scrollbar on hover */
-*:hover::-webkit-scrollbar-thumb {
-    animation: scrollbar-fade-in 0.3s ease-in-out;
-}
-
-@keyframes scrollbar-fade-in {
-    from {
-        opacity: 0.2;
+@media (prefers-color-scheme: light) {
+    :root {
+        color: #213547;
+        background-color: #ffffff;
     }
-    to {
-        opacity: 1;
+    a:hover {
+        color: #747bff;
+    }
+    button {
+        background-color: #f9f9f9;
     }
 }
 
-/* Animation cho submenu dropdown */
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-        max-height: 0;
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-        max-height: 1000px; /* Giá trị đủ lớn để chứa mọi submenu */
-    }
+button:focus {
+    outline: none !important;
 }
 
-@keyframes slideUp {
-    from {
-        opacity: 1;
-        transform: translateY(0);
-        max-height: 1000px;
-    }
-    to {
-        opacity: 0;
-        transform: translateY(-10px);
-        max-height: 0;
-    }
+label {
+    font-weight: 500;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateX(-5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+.ant-typography {
+    margin: 0;
+    padding: 0;
 }
 
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    to {
-        opacity: 0;
-        transform: translateX(-5px);
-    }
+#root {
+    width: 100%;
+    height: 100vh;
+    display: block;
 }
 
-.submenu-container {
-    animation: slideDown 0.3s ease-in-out forwards;
-    overflow: hidden;
-    will-change: transform, opacity, max-height;
+/* Fix cho Dashboard hiển thị dọc */
+.ant-layout {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
 }
 
-.submenu-container-closing {
-    animation: slideUp 0.3s ease-in-out forwards;
+.ant-layout-content {
+    width: 100% !important;
 }
 
-.submenu-item {
-    animation: fadeIn 0.25s ease-in-out forwards;
-    animation-delay: calc(var(--index) * 50ms);
-}
-
-.submenu-item-closing {
-    animation: fadeOut 0.25s ease-in-out forwards;
-    animation-delay: calc(var(--index) * 30ms);
-}
-
-/* Cải thiện animation cho submenu */
-.submenu-transition-wrapper {
-    position: relative;
-}
-
-.submenu-wrapper {
-    transition-property: height, opacity, transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 250ms;
-    transform-origin: top;
-    will-change: height, opacity, transform;
-}
-
-/* Hiệu ứng nền khi hover */
-.sidebar button:hover {
-    transition: background-color 0.15s ease-in-out;
-}
-
-/* Hiệu ứng mượt mà cho icon */
-.sidebar svg {
-    transition: transform 0.2s ease;
-}
-
-.submenu-transition-wrapper li a {
-    padding: 20px 10px !important;
-    font-size: 14px !important;
+.ant-layout-sider-zero-width-trigger {
+    margin-top: -50px;
 }

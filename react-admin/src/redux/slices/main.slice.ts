@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+import { toast } from "../../utils/toast";
 
 export interface MainState {
     notification: string;
