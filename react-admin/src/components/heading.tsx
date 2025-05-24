@@ -1,16 +1,17 @@
 import { Typography } from "antd";
+import { useResponsive } from "../hooks/useReponsive";
 
-const Heading = ({
-    title,
-    description,
-}: {
-    title: string;
-    description: string;
-}) => {
+const Heading = ({ title }: { title: string }) => {
+    const { isMobile } = useResponsive();
+
     return (
         <div>
-            <Typography.Title level={2}>{title}</Typography.Title>
-            <Typography.Paragraph>{description}</Typography.Paragraph>
+            <Typography.Title
+                level={isMobile ? 3 : 2}
+                style={{ marginBottom: 20 }}
+            >
+                {title}
+            </Typography.Title>
         </div>
     );
 };

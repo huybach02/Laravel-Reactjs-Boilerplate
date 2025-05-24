@@ -20,7 +20,12 @@ const LoginPage = () => {
         dispatch(setLoading(false));
 
         if (response?.success) {
-            navigate(URL_CONSTANTS.DASHBOARD);
+            if (response?.data?.is_2fa) {
+                navigate(URL_CONSTANTS.VERIFY_OTP);
+                localStorage.setItem("user_id", response?.data?.user_id || "");
+            } else {
+                navigate(URL_CONSTANTS.DASHBOARD);
+            }
         }
     };
 

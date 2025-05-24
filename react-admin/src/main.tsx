@@ -17,6 +17,9 @@ import { SnackbarProvider } from "notistack";
 import MainLayout from "./components/layouts/main-layout";
 import AuthLayout from "./components/layouts/auth-layout";
 import { ConfigProvider } from "antd";
+import ThoiGianLamViec from "./pages/thoi-gian-lam-viec/ThoiGianLamViec";
+import CauHinhChung from "./pages/cau-hinh-chung/CauHinhChung";
+import VerifyOTP from "./pages/VerifyOTP";
 
 const router = createBrowserRouter([
     {
@@ -53,6 +56,14 @@ const router = createBrowserRouter([
                 ),
             },
             {
+                path: "verify-otp",
+                element: (
+                    <AuthLayout title="XÁC THỰC OTP">
+                        <VerifyOTP />
+                    </AuthLayout>
+                ),
+            },
+            {
                 path: "dashboard",
                 element: <MainLayout />,
                 children: [
@@ -69,6 +80,28 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <UserList />,
+                    },
+                ],
+            },
+            {
+                path: "thiet-lap-he-thong",
+                children: [
+                    {
+                        path: "cau-hinh-chung",
+                        element: <MainLayout />,
+                        children: [
+                            {
+                                index: true,
+                                element: <CauHinhChung />,
+                            },
+                        ],
+                    },
+                    {
+                        path: "thoi-gian-lam-viec",
+                        element: <MainLayout />,
+                        children: [
+                            { index: true, element: <ThoiGianLamViec /> },
+                        ],
                     },
                 ],
             },

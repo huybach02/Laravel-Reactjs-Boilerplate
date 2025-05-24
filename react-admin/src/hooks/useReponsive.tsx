@@ -23,7 +23,9 @@ interface ResponsiveReturnValues {
 }
 
 export const useResponsive = (): ResponsiveReturnValues => {
-    const isMobile = useMediaQuery({ query: media.xs });
+    const isMobile = useMediaQuery({
+        query: `(max-width: ${BREAKPOINTS.md - 0.02}px)`,
+    });
     const isTablet = useMediaQuery({ query: media.md });
     const isDesktop = useMediaQuery({ query: media.xl });
     const isBigScreen = useMediaQuery({ query: media.xxl });

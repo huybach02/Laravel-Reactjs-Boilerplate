@@ -7,15 +7,21 @@ import type {
     LogoutResponse,
     ResetPasswordForm,
     ResetPasswordResponse,
+    VerifyOTPForm,
+    VerifyOTPResponse,
 } from "../types/auth.type";
 import { handleAxiosError } from "../helpers/axiosHelper";
 import type { UserResponse } from "../types/user.type";
 import { toast } from "../utils/toast";
+import { API_ROUTE_CONFIG } from "../configs/api-route-config";
 
 export const AuthService = {
     login: async (payload: LoginForm): Promise<LoginResponse | undefined> => {
         try {
-            const res: LoginResponse = await axios.post("/auth/login", payload);
+            const res: LoginResponse = await axios.post(
+                API_ROUTE_CONFIG.LOGIN,
+                payload
+            );
             if (res.success) {
                 toast.success(res.message);
                 localStorage.setItem("token", res.data.access_token);
@@ -27,7 +33,9 @@ export const AuthService = {
     },
     logout: async (): Promise<LogoutResponse | undefined> => {
         try {
-            const res: LogoutResponse = await axios.post("/auth/logout");
+            const res: LogoutResponse = await axios.post(
+                API_ROUTE_CONFIG.LOGOUT
+            );
             if (res.success) {
                 toast.success(res.message);
                 localStorage.removeItem("token");
@@ -39,7 +47,7 @@ export const AuthService = {
     },
     fetchUser: async (): Promise<UserResponse | undefined> => {
         try {
-            const res = await axios.post("/auth/me");
+            const res = await axios.post(API_ROUTE_CONFIG.ME);
             return res.data;
         } catch (error) {
             handleAxiosError(error);
@@ -50,7 +58,7 @@ export const AuthService = {
     ): Promise<ForgotPasswordResponse | undefined> => {
         try {
             const res: ForgotPasswordResponse = await axios.post(
-                "/auth/forgot-password",
+                API_ROUTE_CONFIG.FORGOT_PASSWORD,
                 payload
             );
             if (res.success) {
@@ -66,7 +74,23 @@ export const AuthService = {
     ): Promise<ResetPasswordResponse | undefined> => {
         try {
             const res: ResetPasswordResponse = await axios.post(
-                "/auth/reset-password",
+                API_ROUTE_CONFIG.RESET_PASSWORD,
+                payload
+            );
+            if (res.success) {
+                toast.success(res.message);
+                return res;
+            }
+        } catch (error) {
+            handleAxiosError(error);
+        }
+    },
+    verifyOTP: async (
+        payload: VerifyOTPForm
+    ): Promise<VerifyOTPResponse | undefined> => {
+        try {
+            const res: VerifyOTPResponse = await axios.post(
+                API_ROUTE_CONFIG.VERIFY_OTP,
                 payload
             );
             if (res.success) {

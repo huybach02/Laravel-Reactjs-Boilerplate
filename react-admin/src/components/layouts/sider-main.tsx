@@ -4,19 +4,24 @@ import { Tag } from "antd";
 
 import { Flex, Layout, Typography } from "antd";
 import { DATA_CONSTANTS } from "../../utils/constant";
-import SidebarItem from "../sidebarItem";
+import useSidebar from "../../hooks/useSidebar";
 
 const SiderMain = ({
     sidebarWidth,
+    collapsed,
     setCollapsed,
 }: {
     sidebarWidth: number;
+    collapsed: boolean;
     setCollapsed: (collapsed: boolean) => void;
 }) => {
+    const { items, openKeys } = useSidebar();
+
     return (
         <Layout.Sider
             breakpoint="lg"
             collapsedWidth="0"
+            collapsed={collapsed}
             width={sidebarWidth}
             onBreakpoint={(broken) => {
                 console.log(broken);
@@ -78,7 +83,8 @@ const SiderMain = ({
                 theme="dark"
                 mode="inline"
                 defaultSelectedKeys={["1"]}
-                items={SidebarItem()}
+                defaultOpenKeys={openKeys}
+                items={items}
                 style={{
                     fontSize: "15px",
                     borderRight: "none",

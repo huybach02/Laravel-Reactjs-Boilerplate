@@ -86,6 +86,7 @@ const MainLayout = () => {
             <Layout style={{ minHeight: "100vh" }}>
                 <SiderMain
                     sidebarWidth={sidebarWidth}
+                    collapsed={collapsed}
                     setCollapsed={setCollapsed}
                 />
                 <Layout
@@ -102,6 +103,7 @@ const MainLayout = () => {
                 >
                     <HeaderMain
                         collapsed={collapsed}
+                        setCollapsed={setCollapsed}
                         sidebarWidth={sidebarWidth}
                         itemsNotification={itemsNotification}
                         items={items}

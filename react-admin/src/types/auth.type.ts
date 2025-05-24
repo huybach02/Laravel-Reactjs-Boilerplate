@@ -12,10 +12,17 @@ export interface LoginData {
     token_type: string;
     expires_in: number;
     user: User;
+    is_2fa?: boolean;
+    user_id?: string;
 }
 
 export interface ForgotPasswordForm {
     email: string;
+}
+
+export interface VerifyOTPForm {
+    user_id: string;
+    otp: string;
 }
 
 export interface ResetPasswordForm {
@@ -28,3 +35,4 @@ export type LoginResponse = ApiResponseSuccess<LoginData>;
 export type LogoutResponse = ApiResponseSuccess<[]>;
 export type ForgotPasswordResponse = ApiResponseSuccess<[]>;
 export type ResetPasswordResponse = ApiResponseSuccess<[]>;
+export type VerifyOTPResponse = ApiResponseSuccess<[]>;

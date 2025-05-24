@@ -6,15 +6,22 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../../redux/store";
 import { useResponsive } from "../../hooks/useReponsive";
 import { Flex, theme } from "antd";
-import { DownOutlined, BellOutlined } from "@ant-design/icons";
+import {
+    DownOutlined,
+    BellOutlined,
+    MenuUnfoldOutlined,
+    MenuFoldOutlined,
+} from "@ant-design/icons";
 
 const HeaderMain = ({
     collapsed,
+    setCollapsed,
     sidebarWidth,
     itemsNotification,
     items,
 }: {
     collapsed: boolean;
+    setCollapsed: (collapsed: boolean) => void;
     sidebarWidth: number;
     itemsNotification: MenuProps["items"];
     items: MenuProps["items"];
@@ -25,7 +32,7 @@ const HeaderMain = ({
         token: { colorBgContainer },
     } = theme.useToken();
 
-    const { mobileOnly } = useResponsive();
+    const { mobileOnly, isMobile } = useResponsive();
 
     return (
         <Header
@@ -47,39 +54,66 @@ const HeaderMain = ({
             }}
         >
             <Flex
-                justify="flex-end"
+                justify={!isMobile ? "space-between" : "flex-end"}
                 align="center"
                 style={{ height: "100%" }}
                 gap={20}
             >
-                <Dropdown
-                    menu={{ items: itemsNotification }}
-                    placement="bottomCenter"
-                    trigger={["click"]}
-                    overlayStyle={{
-                        maxHeight: 400,
-                        maxWidth: 280,
-                        overflow: "auto",
-                    }}
-                >
+                {!isMobile && (
                     <Button
                         type="default"
-                        shape="circle"
-                        icon={<BellOutlined />}
-                        size="large"
+                        icon={
+                            collapsed ? (
+                                <MenuUnfoldOutlined />
+                            ) : (
+                                <MenuFoldOutlined />
+                            )
+                        }
+                        onClick={() => setCollapsed(!collapsed)}
+                        style={{
+                            fontSize: "16px",
+                            width: 64,
+                            height: 64,
+                            border: "none",
+                        }}
                     />
-                </Dropdown>
-                <Dropdown
-                    menu={{ items }}
-                    placement="bottomRight"
-                    trigger={["click"]}
-                >
-                    <Space style={{ cursor: "pointer" }}>
-                        <Avatar size="large" src={user?.image} shape="circle" />
-                        <span style={{ fontWeight: 500 }}>{user?.name}</span>
-                        <DownOutlined style={{ fontSize: "12px" }} />
-                    </Space>
-                </Dropdown>
+                )}
+                <Flex align="center" gap={20}>
+                    <Dropdown
+                        menu={{ items: itemsNotification }}
+                        placement="bottom"
+                        trigger={["click"]}
+                        overlayStyle={{
+                            maxHeight: 400,
+                            maxWidth: 280,
+                            overflow: "auto",
+                        }}
+                    >
+                        <Button
+                            type="default"
+                            shape="circle"
+                            icon={<BellOutlined />}
+                            size="large"
+                        />
+                    </Dropdown>
+                    <Dropdown
+                        menu={{ items }}
+                        placement="bottom"
+                        trigger={["click"]}
+                    >
+                        <Space style={{ cursor: "pointer" }}>
+                            <Avatar
+                                size="large"
+                                src={user?.image}
+                                shape="circle"
+                            />
+                            <span style={{ fontWeight: 500 }}>
+                                {user?.name}
+                            </span>
+                            <DownOutlined style={{ fontSize: "12px" }} />
+                        </Space>
+                    </Dropdown>
+                </Flex>
             </Flex>
         </Header>
     );

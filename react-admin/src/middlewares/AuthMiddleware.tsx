@@ -40,7 +40,7 @@ const AuthMiddleware = ({ children }: { children: React.ReactNode }) => {
             } finally {
                 setTimeout(() => {
                     setIsLoading(false);
-                }, 300);
+                }, 0);
             }
         };
 

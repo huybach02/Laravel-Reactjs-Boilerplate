@@ -1,0 +1,16 @@
+<?php
+
+namespace {{ namespace }};
+
+{{ factoryImport }}
+use App\Traits\UserTrackable;
+use Illuminate\Database\Eloquent\Model;
+
+class {{ class }} extends Model
+{
+    {{ factory }}
+
+    use UserTrackable;
+
+    protected $guarded = [];
+}
